@@ -40,12 +40,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:editable="false"
         android:ems="10"
         android:hint="Fecha de Nacimiento"
-        android:inputType="date"
+        android:inputType="none"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFono" />
 
@@ -67,12 +68,12 @@
         android:id="@+id/chHijos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="¿Tiene hijos?"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaNacimiento" />
+
 
     <EditText
         android:id="@+id/txtEdad"
@@ -106,6 +107,7 @@
         android:id="@+id/btnEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="insertarDatos"
         android:text="Enviar"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -113,5 +115,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chHijos"
         app:layout_constraintVertical_bias="0.361" />
+
+    <Button
+        android:id="@+id/btnFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ingresar"
+        app:layout_constraintEnd_toStartOf="@+id/txtFechaNacimiento"
+        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFono" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
