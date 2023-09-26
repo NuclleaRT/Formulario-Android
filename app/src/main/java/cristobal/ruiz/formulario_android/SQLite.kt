@@ -13,10 +13,10 @@ class SQLite(
         db?.execSQL("create table Usuario (USU_RUT TEXT PRIMARY KEY, " +
                 "USU_NOMBRE TEXT," +
                 " USU_APELLIDO TEXT," +
-                "USU_EDAD INTEGER, " +
-                "USU_TELEFONO INTEGER," +
+                "USU_EDAD int, " +
+                "USU_TELEFONO int," +
                 " USU_FECHANACIMIENTO TEXT," +
-                " USU_HIJOS INTEGER)")
+                " USU_HIJOS int)")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
