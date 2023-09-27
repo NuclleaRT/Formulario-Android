@@ -12,18 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FormularioAndroid"
         tools:targetApi="31">
+
+
         <activity
-            android:name=".GetActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".VerDatosActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".GetActivity"
+            android:exported="false"
+            tools:ignore="WrongManifestParent" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+        </activity>
+
     </application>
 
 </manifest>
