@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         btnFecha = findViewById(R.id.btnFecha)
         tvFecha = findViewById(R.id.txtFechaNacimiento)
 
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         txtNombre=findViewById(R.id.txtNombre)
         txtApellido=findViewById(R.id.txtApellido)
-        txtRUT=findViewById(R.id.tvGet)
+        txtRUT=findViewById(R.id.`as`)
         txtEdad=findViewById(R.id.txtEdad)
         txtFono=findViewById(R.id.txtFono)
         txtFechaNacimiento=findViewById(R.id.txtFechaNacimiento)
@@ -57,12 +59,12 @@ class MainActivity : AppCompatActivity() {
                 Calendario.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-        val Enviar = findViewById<Button>(R.id.btnEnviarAGet)
+        val Enviar = findViewById<Button>(R.id.btnGuardar)
         Enviar.setOnClickListener{
             val nombre = findViewById<EditText>(R.id.txtNombre).text.toString()
             val apellido = findViewById<EditText>(R.id.txtApellido).text.toString()
             val fechaNacimiento = findViewById<EditText>(R.id.txtFechaNacimiento).text.toString()
-            val rut = findViewById<EditText>(R.id.tvGet).text.toString()
+            val rut = findViewById<EditText>(R.id.`as`).text.toString()
             val tieneHijos = findViewById<CheckBox>(R.id.chHijos).isChecked
             val edad = findViewById<EditText>(R.id.txtEdad).text.toString()
             val telefono = findViewById<EditText>(R.id.txtFono).text.toString()
@@ -79,13 +81,32 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,GetActivity::class.java)
             intent.putExtras(bundle)
 
-            startActivity(intent)
+            startActivityForResult(intent, 1) // Utiliza startActivityForResult para obtener una respuesta
         }
 
     }
 
+    // Sobreescribe onActivityResult para manejar el resultado de GetActivity
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                // La solicitud se completó correctamente, así que limpiamos los campos.
+                limpiarCampos()
+            }
+        }
+    }
 
+    private fun limpiarCampos() {
+        txtNombre?.text?.clear()
+        txtApellido?.text?.clear()
+        txtFechaNacimiento?.text?.clear()
+        txtRUT?.text?.clear()
+        chHijos?.isChecked = false
+        txtEdad?.text?.clear()
+        txtFono?.text?.clear()
+    }
 
     private fun ActualizarCalendario(calendario: Calendar) {
         val formato = "dd-MM-YYYY"
@@ -93,10 +114,7 @@ class MainActivity : AppCompatActivity() {
         tvFecha.setText(cambioFormato.format(calendario.time))
     }
 
-    fun IrActivityget(view: View) {
-        val intent = Intent(this, GetActivity::class.java)
-        startActivity(intent)
-    }
+
 
 
 }

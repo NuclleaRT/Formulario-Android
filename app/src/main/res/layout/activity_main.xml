@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtFono" />
 
     <EditText
-        android:id="@+id/tvGet"
+        android:id="@+id/as"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGet" />
+        app:layout_constraintTop_toBottomOf="@+id/as" />
 
     <EditText
         android:id="@+id/txtFono"
@@ -104,10 +104,9 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEdad" />
 
     <Button
-        android:id="@+id/btnEnviarAGet"
+        android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="insertarDatos"
         android:text="Enviar"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,19 +125,5 @@
         app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFono" />
-
-    <ImageButton
-        android:id="@+id/btnBuscarUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="IrActivityget"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019"
-        app:srcCompat="@android:drawable/ic_menu_search"
-        android:contentDescription="Buscar Usuario"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
