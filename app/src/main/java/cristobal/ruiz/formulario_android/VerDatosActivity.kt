@@ -1,97 +1,97 @@
 package cristobal.ruiz.formulario_android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import android.view.ViewGroup
 import android.view.View
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
 
 class VerDatosActivity : AppCompatActivity() {
 
-    var txtNombre: EditText? = null
-    var txtApellido: EditText? = null
-    var txtRUT: EditText? = null
-    var txtEdad: EditText? = null
-    var txtFono: EditText? = null
-    var txtFechaNacimiento: EditText? = null
-    var txtHijos: EditText? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: UsuarioAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_datos)
 
-       /* txtNombre = findViewById(R.id.txtNombre)
-        txtApellido = findViewById(R.id.txtApellido)
-        txtRUT = findViewById(R.id.txtRUT)
-        txtEdad = findViewById(R.id.txtEdad)
-        txtFono = findViewById(R.id.txtFono)
-        txtFechaNacimiento = findViewById(R.id.txtFechaNacimiento)
-        txtHijos = findViewById(R.id.txtHijos)
-        */
+        recyclerView = findViewById(R.id.recyclerViewUsuarios)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Obtener la lista de usuarios de la base de datos
+        val usuarios = obtenerTodosLosUsuarios()
+
+        // Configurar el adaptador con la lista de usuarios
+        adapter = UsuarioAdapter(usuarios)
+        recyclerView.adapter = adapter
     }
-    //Buscar usuario
-  /*  fun buscar(view: View) {
+
+    // Función para obtener todos los usuarios de la base de datos
+    private fun obtenerTodosLosUsuarios(): List<Usuario> {
+        val usuarios = mutableListOf<Usuario>()
         val con = SQLite(this, "RegistroUsuario", null, 1)
-        var BaseDatos = con.writableDatabase
-        var RUT = txtRUT?.text.toString()
-        if (RUT.isEmpty() == false) {
-            val fila = BaseDatos.rawQuery(
-                "SELECT USU_NOMBRE," +
-                        "USU_APELLIDO, " +
-                        "USU_EDAD," +
-                        "USU_TELEFONO," +
-                        "USU_FECHANACIMIENTO, " +
-                        "USU_HIJOS FROM Usuario " +
-                        "WHERE USU_RUT='$RUT' ", null
-            )
-            if (fila.moveToFirst() == true) {
-                txtNombre?.setText(fila.getString(0))
-                txtApellido?.setText(fila.getString(1))
-                txtEdad?.setText(fila.getString(2))
-                txtFono?.setText(fila.getString(3))
-                txtFechaNacimiento?.setText(fila.getString(4))
-                // Obtén el valor de la columna USU_HIJOS
-                val hijos = fila.getInt(5)
+        val baseDatos = con.readableDatabase
 
-                // Asigna "SI" o "No" al TextView dependiendo del valor
-                val hijosTexto = if (hijos == 1) "SI" else "No"
-                txtHijos?.setText(hijosTexto)
-                BaseDatos.close()
-            } else {
-                txtNombre?.setText("")
-                txtApellido?.setText("")
-                txtEdad?.setText("")
-                txtFono?.setText("")
-                txtFechaNacimiento?.setText("")
-                txtHijos?.setText("")
-                Toast.makeText(this, "No se encontro ningun registro", Toast.LENGTH_LONG).show()
-            }
+        val cursor = baseDatos.rawQuery("SELECT * FROM Usuario", null)
+        if (cursor.moveToFirst()) {
+            do {
+                val nombre = cursor.getString(cursor.getColumnIndex("USU_NOMBRE"))
+                val apellido = cursor.getString(cursor.getColumnIndex("USU_APELLIDO"))
+                val edad = cursor.getString(cursor.getColumnIndex("USU_EDAD"))
+                val telefono = cursor.getString(cursor.getColumnIndex("USU_TELEFONO"))
+                val fechaNacimiento =
+                    cursor.getString(cursor.getColumnIndex("USU_FECHANACIMIENTO"))
+                val tieneHijosTexto = cursor.getString(cursor.getColumnIndex("USU_HIJOS"))
+                val tieneHijos = tieneHijosTexto.equals("Sí", ignoreCase = true)
+
+
+                val usuario =
+                    Usuario(nombre, apellido, edad, telefono, fechaNacimiento, tieneHijos)
+                usuarios.add(usuario)
+            } while (cursor.moveToNext())
         }
-    }*/
 
-  /*  fun Eliminar(view: View) {
-        val con = SQLite(this, "RegistroUsuario", null, 1)
-        var BaseDatos = con.writableDatabase
-        var RUT = txtRUT?.text.toString()
-        if (RUT.isEmpty() == false) {
-            val cant = BaseDatos.delete("Usuario", "USU_RUT='" + RUT + "'", null)
-            if (cant > 0) {
-                Toast.makeText(this, "Usuario Eliminado Correctamente", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Usuario no fue encontrado", Toast.LENGTH_LONG).show()
+        cursor.close()
+        baseDatos.close()
 
-            }
-            txtRUT?.setText("")
-            txtNombre?.setText("")
-            txtApellido?.setText("")
-            txtEdad?.setText("")
-            txtFono?.setText("")
-            txtFechaNacimiento?.setText("")
-            txtHijos?.setText("")
-        } else {
-            Toast.makeText(this, "El campo RUT no puede estar vacio", Toast.LENGTH_LONG).show()
+        return usuarios
+    }
 
+    // Adaptador para el RecyclerView
+    inner class UsuarioAdapter(private val usuarios: List<Usuario>) :
+        RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_usuario, parent, false)
+            return UsuarioViewHolder(view)
         }
-    }*/
 
+        override fun onBindViewHolder(holder: UsuarioViewHolder, position: Int) {
+            val usuario = usuarios[position]
+
+            holder.nombreTextView.text = "Nombre: ${usuario.nombre}"
+            holder.apellidoTextView.text = "Apellido: ${usuario.apellido}"
+            holder.edadTextView.text = "Edad: ${usuario.edad}"
+            holder.telefonoTextView.text = "Teléfono: ${usuario.telefono}"
+            holder.fechaNacimientoTextView.text = "Fecha de Nacimiento: ${usuario.fechaNacimiento}"
+            val hijosTexto = if (usuario.tieneHijos) "Sí" else "No"
+            holder.hijosTextView.text = "Tiene Hijos: $hijosTexto"
+        }
+
+        override fun getItemCount(): Int {
+            return usuarios.size
+        }
+
+        inner class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombre)
+            val apellidoTextView: TextView = itemView.findViewById(R.id.textViewApellido)
+            val edadTextView: TextView = itemView.findViewById(R.id.textViewEdad)
+            val telefonoTextView: TextView = itemView.findViewById(R.id.textViewTelefono)
+            val fechaNacimientoTextView: TextView = itemView.findViewById(R.id.textViewFechaNacimiento)
+            val hijosTextView: TextView = itemView.findViewById(R.id.textViewTieneHijos)
+        }
+    }
 }
