@@ -16,7 +16,7 @@ class SQLite(
                 "USU_EDAD int, " +
                 "USU_TELEFONO int," +
                 " USU_FECHANACIMIENTO TEXT," +
-                " USU_HIJOS int)")
+                " USU_HIJOS TEXT)")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

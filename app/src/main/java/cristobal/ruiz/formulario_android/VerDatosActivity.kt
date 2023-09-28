@@ -40,16 +40,16 @@ class VerDatosActivity : AppCompatActivity() {
             do {
                 val nombre = cursor.getString(cursor.getColumnIndex("USU_NOMBRE"))
                 val apellido = cursor.getString(cursor.getColumnIndex("USU_APELLIDO"))
+                val rut = cursor.getString((cursor.getColumnIndex("USU_RUT")))
                 val edad = cursor.getString(cursor.getColumnIndex("USU_EDAD"))
                 val telefono = cursor.getString(cursor.getColumnIndex("USU_TELEFONO"))
-                val fechaNacimiento =
-                    cursor.getString(cursor.getColumnIndex("USU_FECHANACIMIENTO"))
-                val tieneHijosTexto = cursor.getString(cursor.getColumnIndex("USU_HIJOS"))
-                val tieneHijos = tieneHijosTexto.equals("Sí", ignoreCase = true)
+                val fechaNacimiento =cursor.getString(cursor.getColumnIndex("USU_FECHANACIMIENTO"))
+                val tieneHijos = cursor.getString(cursor.getColumnIndex("USU_HIJOS"))
+
 
 
                 val usuario =
-                    Usuario(nombre, apellido, edad, telefono, fechaNacimiento, tieneHijos)
+                    Usuario(nombre, apellido, edad, rut, telefono, fechaNacimiento, tieneHijos)
                 usuarios.add(usuario)
             } while (cursor.moveToNext())
         }
@@ -74,11 +74,11 @@ class VerDatosActivity : AppCompatActivity() {
 
             holder.nombreTextView.text = "Nombre: ${usuario.nombre}"
             holder.apellidoTextView.text = "Apellido: ${usuario.apellido}"
+            holder.rutTextView.text = "Rut"
             holder.edadTextView.text = "Edad: ${usuario.edad}"
-            holder.telefonoTextView.text = "Teléfono: ${usuario.telefono}"
+            holder.telefonoTextView.text = "Telefono: ${usuario.telefono}"
             holder.fechaNacimientoTextView.text = "Fecha de Nacimiento: ${usuario.fechaNacimiento}"
-            val hijosTexto = if (usuario.tieneHijos) "Sí" else "No"
-            holder.hijosTextView.text = "Tiene Hijos: $hijosTexto"
+            holder.hijosTextView.text = "¿Tiene hijos?: ${usuario.tieneHijosTexto}"
         }
 
         override fun getItemCount(): Int {
@@ -88,6 +88,7 @@ class VerDatosActivity : AppCompatActivity() {
         inner class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombre)
             val apellidoTextView: TextView = itemView.findViewById(R.id.textViewApellido)
+            val rutTextView: TextView = itemView.findViewById((R.id.textViewRut))
             val edadTextView: TextView = itemView.findViewById(R.id.textViewEdad)
             val telefonoTextView: TextView = itemView.findViewById(R.id.textViewTelefono)
             val fechaNacimientoTextView: TextView = itemView.findViewById(R.id.textViewFechaNacimiento)

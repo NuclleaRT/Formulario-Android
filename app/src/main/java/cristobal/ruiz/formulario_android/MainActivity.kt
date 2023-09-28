@@ -14,9 +14,6 @@ import java.util.Calendar
 import java.util.Locale
 
 
-
-
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var btnFecha : Button;

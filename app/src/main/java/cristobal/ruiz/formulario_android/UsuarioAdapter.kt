@@ -20,11 +20,12 @@ class UsuarioAdapter(private val usuarios: List<Usuario>) :
 
         holder.nombreTextView.text = "USU_NOMBRE: ${usuario.nombre}"
         holder.apellidoTextView.text = "USU_APELLIDO: ${usuario.apellido}"
+        holder.rutTextView.text = "USU_RUT: ${usuario.rut}"
         holder.edadTextView.text = "USU_EDAD: ${usuario.edad}"
         holder.telefonoTextView.text = "USU_TELEFONO: ${usuario.telefono}"
         holder.fechaNacimientoTextView.text = "USU_FECHANACIMIENTO: ${usuario.fechaNacimiento}"
-        val tieneHijosTexto = if (usuario.tieneHijos) "Sí" else "No"
-        holder.tieneHijosTextView.text = "USU_HIJOS: $tieneHijosTexto"
+        //val tieneHijosTexto = if (usuario.tieneHijos) "Sí" else "No"
+        holder.tieneHijosTextView.text = "USU_HIJOS: ${usuario.tieneHijosTexto}"
     }
 
     override fun getItemCount(): Int {
@@ -34,6 +35,7 @@ class UsuarioAdapter(private val usuarios: List<Usuario>) :
     inner class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombreTextView: TextView = itemView.findViewById(R.id.textViewNombre)
         val apellidoTextView: TextView = itemView.findViewById(R.id.textViewApellido)
+        val rutTextView: TextView = itemView.findViewById((R.id.textViewRut))
         val edadTextView: TextView = itemView.findViewById(R.id.textViewEdad)
         val telefonoTextView: TextView = itemView.findViewById(R.id.textViewTelefono)
         val fechaNacimientoTextView: TextView = itemView.findViewById(R.id.textViewFechaNacimiento)
