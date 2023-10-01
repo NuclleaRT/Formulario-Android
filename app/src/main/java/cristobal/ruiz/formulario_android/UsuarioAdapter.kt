@@ -3,6 +3,7 @@ package cristobal.ruiz.formulario_android
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,14 +19,17 @@ class UsuarioAdapter(private val usuarios: List<Usuario>) :
     override fun onBindViewHolder(holder: UsuarioViewHolder, position: Int) {
         val usuario = usuarios[position]
 
-        holder.nombreTextView.text = "USU_NOMBRE: ${usuario.nombre}"
-        holder.apellidoTextView.text = "USU_APELLIDO: ${usuario.apellido}"
-        holder.rutTextView.text = "USU_RUT: ${usuario.rut}"
-        holder.edadTextView.text = "USU_EDAD: ${usuario.edad}"
-        holder.telefonoTextView.text = "USU_TELEFONO: ${usuario.telefono}"
-        holder.fechaNacimientoTextView.text = "USU_FECHANACIMIENTO: ${usuario.fechaNacimiento}"
+        holder.nombreTextView.text = "Nombre: ${usuario.nombre}"
+        holder.apellidoTextView.text = "Apellido: ${usuario.apellido}"
+        holder.rutTextView.text = "Rut: ${usuario.rut}"
+        holder.edadTextView.text = "Edad: ${usuario.edad}"
+        holder.telefonoTextView.text = "Telefono: ${usuario.telefono}"
+        holder.fechaNacimientoTextView.text = "Fecha de Nacimiento: ${usuario.fechaNacimiento}"
         //val tieneHijosTexto = if (usuario.tieneHijos) "Sí" else "No"
-        holder.tieneHijosTextView.text = "USU_HIJOS: ${usuario.tieneHijosTexto}"
+        holder.tieneHijosTextView.text = "¿Tiene Hijos?: ${usuario.tieneHijosTexto}"
+
+
+
     }
 
     override fun getItemCount(): Int {
@@ -40,5 +44,6 @@ class UsuarioAdapter(private val usuarios: List<Usuario>) :
         val telefonoTextView: TextView = itemView.findViewById(R.id.textViewTelefono)
         val fechaNacimientoTextView: TextView = itemView.findViewById(R.id.textViewFechaNacimiento)
         val tieneHijosTextView: TextView = itemView.findViewById(R.id.textViewTieneHijos)
+        val btnEliminar: Button = itemView.findViewById(R.id.btnEliminarUsuario)
     }
 }
