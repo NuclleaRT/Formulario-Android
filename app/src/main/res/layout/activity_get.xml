@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:editable="false"
         android:ems="10"
         android:hint="¿Tiene Hijos?"
         android:inputType="none"
@@ -52,7 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:editable="false"
         android:hint="Apellido"
         android:inputType="none"
         android:textSize="20sp"
@@ -66,7 +64,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:editable="false"
         android:ems="10"
         android:hint="Fecha de Nacimiento"
         android:inputType="none"
@@ -82,7 +79,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:editable="false"
         android:hint="Telefono"
         android:inputType="none"
         android:textSize="20sp"
@@ -97,7 +93,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:editable="false"
         android:hint="Nombre"
         android:inputType="none"
         android:textSize="20sp"
@@ -112,7 +107,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:editable="false"
         android:hint="Edad"
         android:inputType="none"
         android:textSize="20sp"
@@ -125,14 +119,28 @@
         android:id="@+id/btnEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="buscar"
-        android:text="Buscar Usuario por Rut"
+        android:onClick="insertarDatos"
+        android:text="Guardar Cambios"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHijos"
         app:layout_constraintVertical_bias="0.361" />
+
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="buscar"
+        android:text="Buscar por Rut"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHijos"
+        app:layout_constraintVertical_bias="0.965" />
 
     <ImageButton
         android:id="@+id/btnEliminar"
@@ -145,5 +153,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageView
+        android:id="@+id/btnEditar"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="28dp"
+        android:onClick="editar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
