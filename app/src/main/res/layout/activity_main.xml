@@ -107,7 +107,6 @@
         android:id="@+id/btnEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="insertarDatos"
         android:text="Enviar"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
