@@ -53,7 +53,6 @@ class GetActivity : AppCompatActivity() {
             val edad = extras.getString("edad")
             val telefono = extras.getString("telefono")
 
-            // Asigna los datos a los EditText correspondientes en GetActivity
             txtRUT?.setText(rut)
             txtNombre?.setText(nombre)
             txtApellido?.setText(apellido)
@@ -117,14 +116,8 @@ class GetActivity : AppCompatActivity() {
         val edad = txtEdad?.text.toString()
         val telefono = txtFono?.text.toString()
         val fechaNacimiento = txtFechaNacimiento?.text.toString()
-
-        // Valida que el campo "Tiene Hijos" solo contenga "Si" o "No"
         val tieneHijosText = txtHijos?.text.toString()
-        val tieneHijos = if (tieneHijosText.equals("Si", ignoreCase = true) || tieneHijosText.equals("No", ignoreCase = true)) {
-            tieneHijosText // Si es "Si" o "No", lo asigna directamente
-        } else {
-            "No" // Si no es "Si" ni "No", lo establece como "No" por defecto
-        }
+
 
         if (nombre.isNotEmpty() && apellido.isNotEmpty() && rut.isNotEmpty()
             && edad.isNotEmpty() && telefono.isNotEmpty() && fechaNacimiento.isNotEmpty()) {
@@ -136,7 +129,7 @@ class GetActivity : AppCompatActivity() {
             registro.put("USU_EDAD", edad)
             registro.put("USU_TELEFONO", telefono)
             registro.put("USU_FECHANACIMIENTO", fechaNacimiento)
-            registro.put("USU_HIJOS", tieneHijos)
+            registro.put("USU_HIJOS", tieneHijosText)
 
             baseDatos.insert("Usuario", null, registro)
 

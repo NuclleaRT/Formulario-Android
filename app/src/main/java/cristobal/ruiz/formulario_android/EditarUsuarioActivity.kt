@@ -61,15 +61,12 @@ class EditarUsuarioActivity : AppCompatActivity() {
             val nuevaEdad = etEditarEdad.text.toString()
             val nuevoTelefono = etEditarTelefono.text.toString()
 
-            // Recupera el valor de "rut" de los extras
             val rut = extras?.getString("rut")
 
             if (rut != null) {
-                // Abre la base de datos para actualizar los valores
                 val con = SQLite(this, "RegistroUsuario", null, 1)
                 val baseDatos = con.writableDatabase
 
-                // Crea un objeto ContentValues para actualizar los datos
                 val valoresActualizados = ContentValues()
                 valoresActualizados.put("USU_NOMBRE", nuevoNombre)
                 valoresActualizados.put("USU_APELLIDO", nuevoApellido)
@@ -91,7 +88,6 @@ class EditarUsuarioActivity : AppCompatActivity() {
                         .show()
                 }
 
-                // Cierra la base de datos
                 baseDatos.close()
             }
         }

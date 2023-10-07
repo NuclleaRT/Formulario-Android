@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtFono" />
 
     <EditText
-        android:id="@+id/as"
+        android:id="@+id/txtRUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/as" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRUT" />
 
     <EditText
         android:id="@+id/txtFono"
@@ -104,7 +104,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEdad" />
 
     <Button
-        android:id="@+id/btnGuardar"
+        android:id="@+id/btnEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar"
